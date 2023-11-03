@@ -16,7 +16,7 @@ Essentially a split function made for language developers.
 ```d
 import std.stdio : writefln;
 
-import lit : lit, lit_rules, lit_token;
+import lit : lit, lit_rules;
 
 void main() {
   string[] tn = "hello world".lit(' '); // ["hello", "world"]
