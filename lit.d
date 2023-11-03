@@ -104,7 +104,7 @@ string[] lit(string s, lit_rules rules)
     else if (rules.get_wrapper_right(s[i]) && state == lit_state.LIT_NEST && d == 0 && s[i - 1] != '\\')
     {
       state = lit_state.LIT_STATE_START;
-      ret ~= tmp;
+      ret ~= strip(tmp);
       tmp = "";
       d = -1;
     }
@@ -155,7 +155,13 @@ string[] lit (string s, char delim)
 
 void main()
 {
-  string[] s1 = "[hello world] (hello world) again".lit(' ');
+
+  lit_rules rules = lit_rules();
+
+  rules.wrap('[', ']');
+  rules.wrap('(', ')');
+
+  string[] s1 = "[hello world] (hello world) again".lit(rules);
 
   writefln("%s", s1);
 }
